@@ -1,84 +1,107 @@
-
 /* general styling */
 :root {
-    --smaller: .75;
-  }
-  
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  html, body {
-    height: 100%;
-    margin: 0;
-  }
-  
-  body {
-    align-items: center;
-    background-color: #ffd54f;
-    display: flex;
-    font-family: -apple-system, 
-      BlinkMacSystemFont, 
-      "Segoe UI", 
-      Roboto, 
-      Oxygen-Sans, 
-      Ubuntu, 
-      Cantarell, 
-      "Helvetica Neue", 
-      sans-serif;
-  }
-  
-  .container {
-    color: #333;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
+  --smaller: 0.75;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  align-items: center;
+  background-color: #ffd54f;
+  color: #333;
+  display: flex;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.birthday-name {
+  color: green;
+}
+
+#goback-container {
+  margin: 0;
+  text-align: left;
+}
+
+.container {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.form-container {
+  margin: 0 auto;
+  text-align: left;
+  width: 300px;
+}
+
+.form-container span {
+  display: block;
+  padding: 5px;
+}
+
+.form-container button {
+  display: block;
+  margin: 3px;
+  padding: 2px;
+  position: right;
+}
+
+h1 {
+  font-weight: normal;
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+}
+
+li {
+  display: inline-block;
+  font-size: 1.5em;
+  list-style-type: none;
+  padding: 1em;
+  text-transform: uppercase;
+}
+
+li span {
+  display: block;
+  font-size: 4.5rem;
+}
+
+.emoji {
+  display: none;
+  padding: 1rem;
+}
+
+.emoji span {
+  font-size: 4rem;
+  padding: 0 0.5rem;
+}
+
+@media all and (max-width: 768px) {
   h1 {
-    font-weight: normal;
-    letter-spacing: .125rem;
-    text-transform: uppercase;
-  }
-  
-  li {
-    display: inline-block;
-    font-size: 1.5em;
-    list-style-type: none;
-    padding: 1em;
-    text-transform: uppercase;
-  }
-  
-  li span {
-    display: block;
-    font-size: 4.5rem;
-  }
-  
-  .emoji {
-    display: none;
-    padding: 1rem;
-  }
-  
-  .emoji span {
-    font-size: 4rem;
-    padding: 0 .5rem;
-  }
-  
-  @media all and (max-width: 768px) {
-    h1 {
-      font-size: calc(1.5rem * var(--smaller));
-    }
-    
-    li {
-      font-size: calc(1.125rem * var(--smaller));
-    }
-    
-    li span {
-      font-size: calc(3.375rem * var(--smaller));
-    }
+    font-size: calc(1.5rem * var(--smaller));
   }
 
-  #birthday-name {
-    color: green;
+  li {
+    font-size: calc(1.125rem * var(--smaller));
   }
+
+  li span {
+    font-size: calc(3.375rem * var(--smaller));
+  }
+}
+
+#back-button {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}

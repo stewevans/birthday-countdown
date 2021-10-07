@@ -4,41 +4,111 @@ const minute = second * 60;
 const hour = minute * 60;
 const day = hour * 24;
 
-function startCountdown(name, birthdate){
+function setupPage(){
+    
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
 
-    const today = new Date();
+    const name = urlParams.get("personname");
+    const birthdate = new Date(urlParams.get("birthdate"));
+    const countType = urlParams.get("countType");
 
-    let birthday = new Date(today.getFullYear(), birthdate.getMonth(), birthdate.getDate());
-
-    if (today > birthday) {
-        birthday = new Date(today.getFullYear()+1, birthdate.getMonth(), birthdate.getDate());
+    if(countType == "age"){
+        agecount(name, birthdate);
     }
+    else if (countType == "countdown"){
+        countdown(name, birthdate);
+    }
+    else{
+        displayForm();
+    }
+}
 
-    const countDown = new Date(birthday).getTime();
 
-    document.getElementById("birthday-name").innerText = `${name}'s`;
+function agecount(name, birthdate){
+    displayAgeCount(name);
 
     const timer = setInterval(function() {    
 
-        document.getElementById("countdown-container").style.display = "block";
-        document.getElementById("countdown-form").style.display = "none";
-
-        const now = new Date().getTime();
-        const distance = countDown - now;
+        const distance = new Date().getTime() - birthdate.getTime();
 
         document.getElementById("days").innerText = Math.floor(distance / (day)),
         document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
         document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
         document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
 
-        //do something later when date is reached
+    }, 100);
+}
+
+function countdown(name, birthdate){
+
+    const today = new Date();
+
+    let birthday = new Date(today.getFullYear(), birthdate.getMonth(), birthdate.getDate(), 0, 0, 0, 0);
+
+    if (today > birthday) {
+        birthday = new Date(today.getFullYear()+1, birthdate.getMonth(), birthdate.getDate(), 0, 0, 0, 0);
+    }
+
+    const birthdayTime = birthday.getTime();
+
+    displayCountdown(name);
+
+    const timer = setInterval(function() {    
+
+        const nowTime = new Date().getTime();
+        const distance = birthdayTime - nowTime;
+
+        document.getElementById("days").innerText = Math.floor(distance / (day)),
+        document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
+        document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
+        document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
+
         if (distance < 0) {
-            document.getElementById("headline").innerText = "It's my birthday!";
-            document.getElementById("countdown").style.display = "none";
-            document.getElementById("birthday-content").style.display = "block";
+            displayBirthday(name, birthdate);
             clearInterval(timer);
         }
 
-    }, 0);
+    }, 100);
 
+}
+
+
+function displayForm(){
+    document.getElementById("details-form").style.display = "block";
+    document.getElementById("count-container").style.display = "none";
+    document.getElementById("birthday-container").style.display = "none";
+    document.getElementById("goback-container").style.display = "none";
+}
+
+function displayAgeCount(name){
+    document.getElementById("details-form").style.display = "none";
+    document.getElementById("count-container").style.display = "block";
+    document.getElementById("birthday-container").style.display = "none";
+    document.getElementById("goback-container").style.display = "block";
+
+    document.getElementById("age-birthday-name").innerText = `${name}'s`;
+    document.getElementById("count-headline").style.display = "none";
+    document.getElementById("age-headline").style.display = "inline-block";
+}
+
+function displayCountdown(name){
+    document.getElementById("details-form").style.display = "none";
+    document.getElementById("count-container").style.display = "block";
+    document.getElementById("birthday-container").style.display = "none";
+    document.getElementById("goback-container").style.display = "block";
+
+    document.getElementById("count-birthday-name").innerText = `${name}'s`;
+    document.getElementById("count-headline").style.display = "inline-block";
+    document.getElementById("age-headline").style.display = "none";
+}
+
+function displayBirthday(name, birthdate){
+
+    document.getElementById("details-form").style.display = "none";
+    document.getElementById("count-container").style.display = "none";
+    document.getElementById("birthday-container").style.display = "block";
+    document.getElementById("goback-container").style.display = "block";
+
+    document.getElementById("birthday-headline").innerText = `It's ${name}'s birthday!`;
 }

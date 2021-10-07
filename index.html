@@ -1,35 +1,53 @@
 <html>
-    <head>
-        <script type = "text/javascript" src = "index.js"></script>
-        <link rel="stylesheet" href="styles.css">
-    </head>
 
-    <body>
+<head>
+  <script type="text/javascript" src="index.js"></script>
 
-        <div class="container" id="countdown-form">
-            <form>
-                Name <input type="text" name="personname"/>
-                Birthdate <input type="date" name="birthdate"/>
-                <button type="button" onclick="startCountdown(personname.value, new Date(birthdate.value))">Enter</button>
-            </form>
-        </div>
+  <link rel="stylesheet" href="styles.css">
+</head>
 
-        <div id="countdown-container" class="container" style="display: none;">
-            <h1 id="headline">Countdown to <span id="birthday-name">my</span> birthday:</h1>
-            <div id="countdown">
-              <ul>
-                <li><span id="days"></span>days</li>
-                <li><span id="hours"></span>Hours</li>
-                <li><span id="minutes"></span>Minutes</li>
-                <li><span id="seconds"></span>Seconds</li>
-              </ul>
-            </div>
-            <div id="birthday-content" class="emoji">
-              <span>🥳</span>
-              <span>🎉</span>
-              <span>🎂</span>
-            </div>
-          </div>
-    </body>
+<body onload="setupPage()">
+
+  <div id="goback-container" class="container">
+    <form>
+      <button type="submit" id="back-button">Start Over</button>
+    </form>
+  </div>
+
+  <div id="details-form" class="form-container">
+    <form>
+      <span>Name <input type="text" name="personname" /></span>
+      <span>Birthdate <input type="date" name="birthdate" /></span>
+      <span>
+        Countdown type:
+        <br />
+        <input type="radio" name="countType" value="age" /> Age in Days<br />
+        <input type="radio" name="countType" value="countdown" checked=true /> Birthday Countdown
+      </span>
+      <button type="submit">Enter</button>
+    </form>
+  </div>
+
+  <div id="count-container" class="container">
+    <h1 id="count-headline">Countdown to <span id="count-birthday-name" class="birthday-name">my</span> birthday:</h1>
+    <h1 id="age-headline"><span id="age-birthday-name" class="birthday-name">Your</span> age is:</h1>
+    <div id="countdown">
+      <ul>
+        <li><span id="days"></span>days</li>
+        <li><span id="hours"></span>Hours</li>
+        <li><span id="minutes"></span>Minutes</li>
+        <li><span id="seconds"></span>Seconds</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="birthday-container" class="container" class="emoji">
+    <h1 id="birthday-headline">Happy Birthday <span id="birthday-name">to you</span>!</h1>
+    <span>🥳</span>
+    <span>🎉</span>
+    <span>🎂</span>
+  </div>
+
+</body>
+
 </html>
-
